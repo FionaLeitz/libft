@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:10:59 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/23 10:11:01 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/11/24 13:07:43 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		dst2[y] = src2[y];
 		y++;
 	}
-	dst2[y] = '\0';
 	return (dst);
 }
