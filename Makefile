@@ -6,7 +6,7 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/11/24 09:59:45 by fleitz           ###   ########.fr        #
+#    Updated: 2021/11/25 11:11:47 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,6 @@ SRCS		= ft_isalpha.c			\
 		 	  ft_putendl_fd.c		\
 		 	  ft_putnbr_fd.c		\
 
-MAINS		= 
-
 OBJS		= ${SRCS:.c=.o}
 
 HEADERS 	= libft.h
@@ -65,12 +63,12 @@ ${NAME}:	${OBJS}
 			gcc ${CFLAGS} -I${HEADERS} -c $< -o ${<:.c=.o}
 
 test:		all
-			gcc ${CFLAGS} 
+			gcc ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
 
 clean:
 			rm -f ${OBJS}
 
 fclean:		clean
-			rm -f ${NAME}
+			rm -f ${NAME} a.out
 
 re:			fclean all
