@@ -6,7 +6,7 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/11/26 15:35:48 by fleitz           ###   ########.fr        #
+#    Updated: 2021/11/26 16:06:55 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,13 +68,13 @@ all:		${NAME}
 ${NAME}:	${OBJS}
 
 bonus:		${OBJS_BONUS}
-			ar -rc ${NAME} ${OBJS_BONUS} ${HEADERS}
+			ar -r ${NAME} ${OBJS_BONUS} ${HEADERS}
 
 test:
 			gcc ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
 
-test_bonus:	all	
-			gcc ${CFLAGS} ../mains/mains_bonus.c libft.a && ./a.out
+test_bonus:
+			gcc ${CFLAGS} mains_bonus.c libft.a && ./a.out
 
 clean:
 			rm -f ${OBJS} ${OBJS_BONUS}
