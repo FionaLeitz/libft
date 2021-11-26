@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 12:36:38 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/26 13:10:18 by fleitz           ###   ########.fr       */
+/*   Created: 2021/11/26 13:10:34 by fleitz            #+#    #+#             */
+/*   Updated: 2021/11/26 13:11:52 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_lstdelone(t_list	*lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 
+
+	return ;
 }
