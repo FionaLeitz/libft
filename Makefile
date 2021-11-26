@@ -6,7 +6,7 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/11/25 11:11:47 by fleitz           ###   ########.fr        #
+#    Updated: 2021/11/26 12:50:34 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,15 @@ SRCS		= ft_isalpha.c			\
 		 	  ft_putendl_fd.c		\
 		 	  ft_putnbr_fd.c		\
 
+SRCS_BONUS	= ft_lstnew.c			\
+			  ft_lstadd_front.c		\
+			  ft_lstsize.c			\
+			  ft_lstlast.c			\
+			  ft_lstadd_back.c		\
+
 OBJS		= ${SRCS:.c=.o}
+
+OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
 
 HEADERS 	= libft.h
 
@@ -59,14 +67,17 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 
-.c.o:
-			gcc ${CFLAGS} -I${HEADERS} -c $< -o ${<:.c=.o}
+bonus:		${OBJS_BONUS}
+			ar -rc ${NAME} ${OBJS_BONUS} ${HEADERS}
 
 test:		all
 			gcc ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
 
+test_bonus:	bonus 
+			gcc ${CFLAGS} mains_bonus.c libft.a && ./a.out
+
 clean:
-			rm -f ${OBJS}
+			rm -f ${OBJS} ${OBJS_BONUS}
 
 fclean:		clean
 			rm -f ${NAME} a.out
