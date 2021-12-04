@@ -6,23 +6,46 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 13:12:12 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/26 14:05:56 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:36:57 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+static int	ft_free_lstmap(t_list *lst2, void (*del)(void *))
+{
+	while (lst2 != NULL)
+	{
+		del(lst2->content);
+		free(lst2);
+		lst2 = lst2->next;
+	}
+	free(lst2);
+	return (0);
+}
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*lst2;
+	t_list	*save;
 
-	lst2 = malloc(sizeof(t_list));
-	while (lst->next != NULL)
+	lst2 = ft_lstnew(f(lst->content));
+	if (lst2 == NULL)
+		return (0);
+	lst = lst->next;
+	save = lst2;
+	while (lst != NULL)
 	{
-
-		lst2 = ft_lstnew(f(lst->content));
-		lst2->next = 
+		lst2->next = ft_lstnew(f(lst->content));
+		if (lst2 == NULL)
+		{
+			lst2 = save;
+			ft_free_lstmap(lst2, del);
+			return (0);
+		}
 		lst = lst->next;
+		lst2 = lst2->next;
 	}
+	return (save);
 }

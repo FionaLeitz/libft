@@ -6,14 +6,14 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:10:06 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/23 10:10:24 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:35:49 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_recursive(unsigned int n, char *result)
+static char	*ft_recursive_itoa(unsigned int n, char *result)
 {
 	int				i;
 	unsigned int	n2;
@@ -22,7 +22,7 @@ char	*ft_recursive(unsigned int n, char *result)
 	n2 = n;
 	n = n / 10;
 	if (n > 0)
-		(ft_recursive(n, result));
+		(ft_recursive_itoa(n, result));
 	while (result[i])
 		i++;
 	result[i] = (n2 % 10) + '0';
@@ -47,5 +47,5 @@ char	*ft_itoa(int n)
 		n2 = -n;
 		i++;
 	}
-	return (ft_recursive(n2, result));
+	return (ft_recursive_itoa(n2, result));
 }

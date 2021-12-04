@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:36:12 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/26 10:31:13 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/01 10:31:19 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	ft_lstadd_front(t_list **alst, t_list *new)
 {
 	new->next = *alst;
+	*alst = new;
 	return ;
 }

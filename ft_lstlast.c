@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:50:27 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/26 12:20:20 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/03 11:44:56 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
+	if (lst == NULL)
+		return (0);
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);

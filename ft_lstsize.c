@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 12:47:29 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/26 12:18:06 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/01 09:31:01 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
-	i = 1;
-	while (lst->next != NULL)
+	i = 0;
+	while (lst != NULL)
 	{
 		lst = lst->next;
 		i++;

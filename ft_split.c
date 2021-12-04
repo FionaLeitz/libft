@@ -6,14 +6,14 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:12:40 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/23 11:08:41 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:42:55 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-size_t	ft_countwords(char const *s, char c)
+static size_t	ft_countwords(char const *s, char c)
 {
 	size_t	i;
 	size_t	countwords;
@@ -31,19 +31,18 @@ size_t	ft_countwords(char const *s, char c)
 	return (countwords);
 }
 
-void	ft_free(size_t j, char **tab)
+static void	ft_free_split(size_t j, char **tab)
 {
 	while (j > 0)
 	{
-		free(tab[j]);
 		j--;
+		free(tab[j]);
 	}
-	free(tab[0]);
 	free(tab);
 	return ;
 }
 
-char	**ft_countchar(char const *s, char c, char **tab)
+static char	**ft_countchar(char const *s, char c, char **tab)
 {
 	size_t	i;
 	size_t	j;
@@ -55,16 +54,15 @@ char	**ft_countchar(char const *s, char c, char **tab)
 	{
 		while (s[i] == c)
 			i++;
+		if (s[i] == '\0')
+			return (tab);
 		countchar = 0;
-		while (s[i] && s[i] != c)
-		{
-			i++;
+		while (s[i] && s[i++] != c)
 			countchar++;
-		}
 		tab[j] = (char *)malloc(sizeof(char) * (countchar + 1));
 		if (tab[j] == NULL)
 		{
-			ft_free(j, tab);
+			ft_free_split(j, tab);
 			return (0);
 		}
 		j++;
@@ -72,7 +70,7 @@ char	**ft_countchar(char const *s, char c, char **tab)
 	return (tab);
 }
 
-char	**ft_copy(char const *s, char c, char **tab)
+static char	**ft_copy(char const *s, char c, char **tab)
 {
 	size_t	i;
 	size_t	j;
@@ -84,6 +82,8 @@ char	**ft_copy(char const *s, char c, char **tab)
 	{
 		while (s[i] == c)
 			i++;
+		if (s[i] == '\0')
+			return (tab);
 		countchar = 0;
 		while (s[i] && s[i] != c)
 		{
@@ -106,8 +106,11 @@ char	**ft_split(char const *s, char c)
 	tab = (char **)malloc(sizeof(char *) * (countwords + 1));
 	if (tab == NULL)
 		return (0);
-	ft_countchar(s, c, tab);
+	tab[countwords] = NULL;
+	if (countwords == 0)
+		return (tab);
+	if (ft_countchar(s, c, tab) == 0)
+		return (0);
 	ft_copy(s, c, tab);
-	tab[countwords] = 0;
 	return (tab);
 }

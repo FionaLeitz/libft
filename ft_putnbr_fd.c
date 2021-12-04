@@ -6,20 +6,20 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:12:17 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/23 10:12:19 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/04 11:38:43 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_recursive(int n, int fd)
+static void	ft_recursive_putnbr(int n, int fd)
 {
 	int	rest;
 
 	rest = n % 10 + '0';
 	n = n / 10;
 	if (n > 0)
-		ft_recursive(n, fd);
+		ft_recursive_putnbr(n, fd);
 	write(fd, &rest, 1);
 	return ;
 }
@@ -36,6 +36,6 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, "-", 1);
 		n = -n;
 	}
-	ft_recursive(n, fd);
+	ft_recursive_putnbr(n, fd);
 	return ;
 }

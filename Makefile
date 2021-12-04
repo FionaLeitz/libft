@@ -6,7 +6,7 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/11/26 16:06:55 by fleitz           ###   ########.fr        #
+#    Updated: 2021/12/01 15:59:02 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,10 @@ SRCS_BONUS	= ft_lstnew.c			\
 			  ft_lstsize.c			\
 			  ft_lstlast.c			\
 			  ft_lstadd_back.c		\
+			  ft_lstdelone.c		\
+			  ft_lstclear.c			\
+			  ft_lstiter.c			\
+			  ft_lstmap.c			\
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -62,19 +66,24 @@ HEADERS 	= libft.h
 
 CFLAGS		= -Wall -Wextra -Werror
 
-all:		${NAME}
+all:		$(NAME)
+
+$(NAME):
 			ar -rc ${NAME} ${OBJS} ${HEADERS}
 
 ${NAME}:	${OBJS}
 
 bonus:		${OBJS_BONUS}
-			ar -r ${NAME} ${OBJS_BONUS} ${HEADERS}
+			ar -rc ${NAME} ${OBJS_BONUS} ${HEADERS}
 
 test:
 			gcc ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
 
 test_bonus:
-			gcc ${CFLAGS} mains_bonus.c libft.a && ./a.out
+			gcc ${CFLAGS} ../mains/mains_bonus.c libft.a && ./a.out
+
+leaks:
+			leaks a.out
 
 clean:
 			rm -f ${OBJS} ${OBJS_BONUS}

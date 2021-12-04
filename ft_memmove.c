@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:11:15 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/24 16:48:35 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/04 10:16:15 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	dst2 = (char *) dst;
 	src2 = (char *) src;
 	y = 0;
+	if (dst == NULL && src == NULL)
+		return (0);
 	if (len == 0)
 		return (dst);
 	if (dst <= src)
