@@ -6,7 +6,7 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/12/01 15:59:02 by fleitz           ###   ########.fr        #
+#    Updated: 2021/12/07 08:54:09 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,23 +64,26 @@ OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
 
 HEADERS 	= libft.h
 
+CC			= gcc
+
 CFLAGS		= -Wall -Wextra -Werror
 
 all:		$(NAME)
 
-$(NAME):
+$(NAME):	${OBJS}
 			ar -rc ${NAME} ${OBJS} ${HEADERS}
 
-${NAME}:	${OBJS}
+%.o: %.c
+			${CC} ${CFLAGS} -c $< -o $@
 
-bonus:		${OBJS_BONUS}
+bonus:		${OBJS} ${OBJS_BONUS}
 			ar -rc ${NAME} ${OBJS_BONUS} ${HEADERS}
 
-test:
-			gcc ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
+test:		${NAME}
+			${CC} ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
 
-test_bonus:
-			gcc ${CFLAGS} ../mains/mains_bonus.c libft.a && ./a.out
+test_bonus:	bonus
+			${CC} ${CFLAGS} ../mains/mains_bonus.c libft.a && ./a.out
 
 leaks:
 			leaks a.out
@@ -92,3 +95,5 @@ fclean:		clean
 			rm -f ${NAME} a.out
 
 re:			fclean all
+
+.PHONY:		${NAME}
