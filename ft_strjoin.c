@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:13:34 by fleitz            #+#    #+#             */
-/*   Updated: 2021/11/23 10:13:37 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/07 09:19:26 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (str == NULL)
 		return (0);

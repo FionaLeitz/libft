@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:16:14 by fleitz            #+#    #+#             */
-/*   Updated: 2021/12/04 11:43:14 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/07 09:36:53 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,25 @@ static char	*ft_empty(void)
 	return (str);
 }
 
+static size_t	ft_size(char const *s1, char const *set)
+{
+	size_t	i;
+
+	i = ft_strlen(s1);
+	while ((ft_strchr(set, s1[i]) != 0) && i > 0)
+		i--;
+	return (i);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	len;
 	size_t	i;
 	char	*str;
 
-	i = ft_strlen(s1);
-	while ((ft_strchr(set, s1[i]) != 0) && i > 0)
-		i--;
+	if (s1 == NULL)
+		return (NULL);
+	i = ft_size(s1, set);
 	if (i == 0)
 	{
 		str = ft_empty();

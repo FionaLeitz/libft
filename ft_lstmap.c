@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 13:12:12 by fleitz            #+#    #+#             */
-/*   Updated: 2021/12/04 11:36:57 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/07 09:23:39 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*lst2;
 	t_list	*save;
 
+	if (lst == NULL)
+		return (NULL);
 	lst2 = ft_lstnew(f(lst->content));
 	if (lst2 == NULL)
 		return (0);

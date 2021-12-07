@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:16:22 by fleitz            #+#    #+#             */
-/*   Updated: 2021/12/04 11:26:49 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/07 09:18:10 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	size;
 
+	if (s == NULL)
+		return (NULL);
 	size = ft_strlen(s);
 	if (start >= size)
 	{

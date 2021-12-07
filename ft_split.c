@@ -6,7 +6,7 @@
 /*   By: fleitz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:12:40 by fleitz            #+#    #+#             */
-/*   Updated: 2021/12/04 11:42:55 by fleitz           ###   ########.fr       */
+/*   Updated: 2021/12/07 09:20:17 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ char	**ft_split(char const *s, char c)
 	char	**tab;
 	size_t	countwords;
 
+	if (s == NULL)
+		return (NULL);
 	countwords = ft_countwords(s, c);
 	tab = (char **)malloc(sizeof(char *) * (countwords + 1));
 	if (tab == NULL)
