@@ -6,63 +6,65 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/12/07 08:54:09 by fleitz           ###   ########.fr        #
+#    Updated: 2021/12/16 15:13:35 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
 
-SRCS		= ft_isalpha.c			\
-		 	  ft_isdigit.c			\
-			  ft_isalnum.c			\
-		 	  ft_isascii.c			\
-		 	  ft_isprint.c			\
-		 	  ft_strlen.c			\
-		 	  ft_memset.c			\
-		 	  ft_bzero.c			\
-		 	  ft_memcpy.c			\
-		 	  ft_memmove.c			\
-		 	  ft_strlcpy.c			\
-		 	  ft_strlcat.c			\
-		 	  ft_toupper.c			\
-		 	  ft_tolower.c			\
-		 	  ft_strchr.c			\
-		 	  ft_strrchr.c			\
-		 	  ft_strncmp.c			\
-			  ft_strncmp.c			\
-			  ft_memchr.c			\
-			  ft_memcmp.c			\
-			  ft_strnstr.c			\
-			  ft_atoi.c				\
-			  ft_calloc.c			\
-			  ft_strdup.c			\
-			  ft_substr.c			\
-			  ft_strjoin.c			\
-		 	  ft_strtrim.c			\
-		 	  ft_split.c			\
-			  ft_itoa.c				\
-		 	  ft_strmapi.c			\
-		 	  ft_striteri.c			\
-		 	  ft_putchar_fd.c		\
-		 	  ft_putstr_fd.c		\
-		 	  ft_putendl_fd.c		\
-		 	  ft_putnbr_fd.c		\
+SRCS_STRINGS	= srcs_strings/ft_isalpha.c			\
+				  srcs_strings/ft_isdigit.c			\
+				  srcs_strings/ft_isalnum.c			\
+				  srcs_strings/ft_isascii.c			\
+				  srcs_strings/ft_isprint.c			\
+				  srcs_strings/ft_strlen.c			\
+				  srcs_strings/ft_memset.c			\
+				  srcs_strings/ft_bzero.c			\
+				  srcs_strings/ft_memcpy.c			\
+				  srcs_strings/ft_memmove.c			\
+				  srcs_strings/ft_strlcpy.c			\
+				  srcs_strings/ft_strcat.c			\
+				  srcs_strings/ft_strlcat.c			\
+				  srcs_strings/ft_toupper.c			\
+				  srcs_strings/ft_tolower.c			\
+				  srcs_strings/ft_strchr.c			\
+				  srcs_strings/ft_strrchr.c			\
+				  srcs_strings/ft_strncmp.c			\
+				  srcs_strings/ft_strncmp.c			\
+				  srcs_strings/ft_memchr.c			\
+				  srcs_strings/ft_memcmp.c			\
+				  srcs_strings/ft_strnstr.c			\
+				  srcs_strings/ft_calloc.c			\
+				  srcs_strings/ft_strdup.c			\
+				  srcs_strings/ft_strndup.c			\
+				  srcs_strings/ft_substr.c			\
+				  srcs_strings/ft_strjoin.c			\
+				  srcs_strings/ft_strtrim.c			\
+				  srcs_strings/ft_split.c			\
+				  srcs_strings/ft_strmapi.c			\
+				  srcs_strings/ft_striteri.c		\
 
-SRCS_BONUS	= ft_lstnew.c			\
-			  ft_lstadd_front.c		\
-			  ft_lstsize.c			\
-			  ft_lstlast.c			\
-			  ft_lstadd_back.c		\
-			  ft_lstdelone.c		\
-			  ft_lstclear.c			\
-			  ft_lstiter.c			\
-			  ft_lstmap.c			\
+SRCS_NBR	= srcs_nbr/ft_atoi.c					\
+			  srcs_nbr/ft_itoa.c					\
 
-OBJS		= ${SRCS:.c=.o}
+SRCS_WRITE	= srcs_write/ft_putchar_fd.c			\
+			  srcs_write/ft_putstr_fd.c				\
+			  srcs_write/ft_putendl_fd.c			\
+			  srcs_write/ft_putnbr_fd.c				\
 
-OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
+SRCS_LST	= srcs_lst/ft_lstnew.c					\
+			  srcs_lst/ft_lstadd_front.c			\
+			  srcs_lst/ft_lstsize.c					\
+			  srcs_lst/ft_lstlast.c					\
+			  srcs_lst/ft_lstadd_back.c				\
+			  srcs_lst/ft_lstdelone.c				\
+			  srcs_lst/ft_lstclear.c				\
+			  srcs_lst/ft_lstiter.c					\
+			  srcs_lst/ft_lstmap.c					\
 
-HEADERS 	= libft.h
+OBJS		= ${SRCS_STRINGS:.c=.o} ${SRCS_NBR:.c=.o} ${SRCS_WRITE:.c=.o} ${SRCS_LST:.c=.o}
+
+HEADERS 	= headers/libft.h
 
 CC			= gcc
 
@@ -71,29 +73,17 @@ CFLAGS		= -Wall -Wextra -Werror
 all:		$(NAME)
 
 $(NAME):	${OBJS}
-			ar -rc ${NAME} ${OBJS} ${HEADERS}
+			ar -rcs ${NAME} ${OBJS} ${HEADERS}
 
 %.o: %.c
 			${CC} ${CFLAGS} -c $< -o $@
 
-bonus:		${OBJS} ${OBJS_BONUS}
-			ar -rc ${NAME} ${OBJS_BONUS} ${HEADERS}
-
-test:		${NAME}
-			${CC} ${CFLAGS} ../mains/mains_all.c libft.a && ./a.out
-
-test_bonus:	bonus
-			${CC} ${CFLAGS} ../mains/mains_bonus.c libft.a && ./a.out
-
-leaks:
-			leaks a.out
-
 clean:
-			rm -f ${OBJS} ${OBJS_BONUS}
+			rm -f ${OBJS}
 
 fclean:		clean
-			rm -f ${NAME} a.out
+			rm -f ${NAME}
 
 re:			fclean all
 
-.PHONY:		${NAME}
+.PHONY:		clean fclean re all
