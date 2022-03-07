@@ -6,11 +6,25 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2021/12/16 15:13:35 by fleitz           ###   ########.fr        #
+#    Updated: 2022/03/07 16:12:02 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+_END=$'\x1b[0m
+_GREEN=$'\x1b[32m
+_YELLOW=$'\x1b[33m
+_ORANGE=$'\x1b[38;2;255;165;0m
+
 NAME		= libft.a
+
+SRCS_PRINTF		= srcs_printf/ft_printf.c			\
+				  srcs_printf/ft_putchar.c			\
+				  srcs_printf/ft_putnbr.c			\
+				  srcs_printf/ft_putnbr_16.c		\
+				  srcs_printf/ft_putnbr_unsigned.c	\
+				  srcs_printf/ft_putptr.c			\
+				  srcs_printf/ft_putstr.c			\
+				  srcs_printf/ft_select.c			\
 
 SRCS_STRINGS	= srcs_strings/ft_isalpha.c			\
 				  srcs_strings/ft_isdigit.c			\
@@ -62,9 +76,7 @@ SRCS_LST	= srcs_lst/ft_lstnew.c					\
 			  srcs_lst/ft_lstiter.c					\
 			  srcs_lst/ft_lstmap.c					\
 
-OBJS		= ${SRCS_STRINGS:.c=.o} ${SRCS_NBR:.c=.o} ${SRCS_WRITE:.c=.o} ${SRCS_LST:.c=.o}
-
-HEADERS 	= headers/libft.h
+OBJS		= ${SRCS_STRINGS:.c=.o} ${SRCS_NBR:.c=.o} ${SRCS_WRITE:.c=.o} ${SRCS_LST:.c=.o} ${SRCS_PRINTF:.c=.o}
 
 CC			= gcc
 
@@ -73,16 +85,20 @@ CFLAGS		= -Wall -Wextra -Werror
 all:		$(NAME)
 
 $(NAME):	${OBJS}
-			ar -rcs ${NAME} ${OBJS} ${HEADERS}
+			@echo "${_ORANGE}Objects libft created${_END}"
+			@ar -rcs ${NAME} ${OBJS}
+			@echo "${_GREEN}LIBFT compiled succesfully !${_END}"
 
 %.o: %.c
-			${CC} ${CFLAGS} -c $< -o $@
+			@${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-			rm -f ${OBJS}
+			@rm -f ${OBJS}
+			@echo "${_YELLOW}Objects cleaned !${_END}"
 
 fclean:		clean
-			rm -f ${NAME}
+			@rm -f ${NAME}
+			@echo "${_YELLOW}${NAME} cleaned !${_END}"
 
 re:			fclean all
 
