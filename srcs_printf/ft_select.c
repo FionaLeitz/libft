@@ -6,7 +6,7 @@
 /*   By: fleitz <fleitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:10:10 by fleitz            #+#    #+#             */
-/*   Updated: 2022/01/13 12:01:53 by fleitz           ###   ########.fr       */
+/*   Updated: 2022/03/08 09:12:04 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_select(char c, va_list arguments)
 	else if (c == 'p')
 	{
 		write(1, "0x", 2);
-		result = 2 + ft_putptr(va_arg(arguments, uintptr_t));
+		result = 2 + ft_putptr(va_arg(arguments, intptr_t));
 	}
 	else if (c == 'd')
 		result = ft_putnbr(va_arg(arguments, int));

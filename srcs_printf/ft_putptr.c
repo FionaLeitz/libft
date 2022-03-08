@@ -6,13 +6,13 @@
 /*   By: fleitz <fleitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:34:14 by fleitz            #+#    #+#             */
-/*   Updated: 2022/01/13 12:01:20 by fleitz           ###   ########.fr       */
+/*   Updated: 2022/03/08 09:11:30 by fleitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-int	ft_putptr(uintptr_t n)
+int	ft_putptr(intptr_t n)
 {
 	char	*base;
 	int		i;
