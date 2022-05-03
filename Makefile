@@ -6,7 +6,7 @@
 #    By: fleitz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 10:17:02 by fleitz            #+#    #+#              #
-#    Updated: 2022/03/08 09:10:16 by fleitz           ###   ########.fr        #
+#    Updated: 2022/03/22 13:22:41 by fleitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ _YELLOW=$'\033[1;33m
 _ORANGE=$'\033[38;2;255;165;0m
 
 NAME		= libft.a
+
+SRCS_GNL		= srcs_gnl/get_next_line.c			\
 
 SRCS_PRINTF		= srcs_printf/ft_printf.c			\
 			  srcs_printf/ft_putchar.c			\
@@ -77,7 +79,7 @@ SRCS_LST	= srcs_lst/ft_lstnew.c					\
 		  srcs_lst/ft_lstiter.c					\
 		  srcs_lst/ft_lstmap.c					\
 
-OBJS		= ${SRCS_STRINGS:.c=.o} ${SRCS_NBR:.c=.o} ${SRCS_WRITE:.c=.o} ${SRCS_LST:.c=.o} ${SRCS_PRINTF:.c=.o}
+OBJS		= ${SRCS_STRINGS:.c=.o} ${SRCS_NBR:.c=.o} ${SRCS_WRITE:.c=.o} ${SRCS_LST:.c=.o} ${SRCS_PRINTF:.c=.o} ${SRCS_GNL:.c=.o}
 
 CC			= gcc
 
@@ -88,18 +90,18 @@ all:		$(NAME)
 $(NAME):	${OBJS}
 			@echo "${_GREEN}----------------\nLIBFT\n----------------${_END}"
 			@echo "${_ORANGE}Objects libft created${_END}"
-			@ar -rcs ${NAME} ${OBJS}
+			ar -rcs ${NAME} ${OBJS}
 			@echo "${_GREEN}LIBFT compiled succesfully !${_END}"
 
 %.o: %.c
-			@${CC} ${CFLAGS} -c $< -o $@
+			${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-			@rm -f ${OBJS}
+			rm -f ${OBJS}
 			@echo "${_YELLOW}Objects cleaned !${_END}"
 
 fclean:		clean
-			@rm -f ${NAME}
+			rm -f ${NAME}
 			@echo "${_YELLOW}${NAME} cleaned !${_END}"
 
 re:			fclean all
